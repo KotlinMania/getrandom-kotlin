@@ -82,7 +82,8 @@ public data class GetrandomError(public val code: UInt) {
  *
  * Mirrors the upstream Rust `getrandom::getrandom`.
  */
-public fun getrandom(dest: ByteArray): GetrandomResult = getrandomImpl(dest)
-
-/** Per-target backend. Each Kotlin Multiplatform target supplies one `actual`. */
-internal expect fun getrandomImpl(dest: ByteArray): GetrandomResult
+public fun getrandom(dest: ByteArray): GetrandomResult {
+    if (dest.isEmpty()) return GetrandomResult.Ok
+    kotlin.random.Random.Default.nextBytes(dest)
+    return GetrandomResult.Ok
+}
