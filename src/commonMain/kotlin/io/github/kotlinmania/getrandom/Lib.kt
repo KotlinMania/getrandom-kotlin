@@ -12,7 +12,10 @@ package io.github.kotlinmania.getrandom
  */
 public sealed class GetrandomResult {
     public data object Ok : GetrandomResult()
-    public data class Failure(public val error: GetrandomError) : GetrandomResult()
+
+    public data class Failure(
+        public val error: GetrandomError,
+    ) : GetrandomResult()
 
     public val isOk: Boolean get() = this is Ok
 
@@ -30,23 +33,27 @@ public sealed class GetrandomResult {
  *   Values at or above [INTERNAL_START] are reserved internal sentinels
  *   like [UNSUPPORTED], [WEB_CRYPTO], etc.
  */
-public data class GetrandomError(public val code: UInt) {
+public data class GetrandomError(
+    public val code: UInt,
+) {
     /** Human-readable description of this error. */
-    public val displayMessage: String get() = when (code) {
-        UNSUPPORTED.code -> "getrandom: this target is not supported"
-        ERRNO_NOT_POSITIVE.code -> "getrandom: errno returned a non-positive value"
-        UNEXPECTED.code -> "getrandom: unexpected situation"
-        IOS_SEC_RANDOM.code -> "getrandom: CCRandomGenerateBytes failed"
-        WINDOWS_RTL_GEN_RANDOM.code -> "getrandom: BCryptGenRandom / RtlGenRandom failed"
-        FAILED_RDRAND.code -> "getrandom: RDRAND failed"
-        NO_RDRAND.code -> "getrandom: RDRAND unsupported on this target"
-        WEB_CRYPTO.code -> "getrandom: Web Crypto API unavailable"
-        WEB_GET_RANDOM_VALUES.code -> "getrandom: crypto.getRandomValues failed"
-        NODE_CRYPTO.code -> "getrandom: Node.js crypto module unavailable"
-        NODE_RANDOM_FILL_SYNC.code -> "getrandom: crypto.randomFillSync failed"
-        WASI_RANDOM_GET.code -> "getrandom: WASI random_get failed"
-        else -> "getrandom: OS error (code=$code)"
-    }
+    public val displayMessage: String
+        get() =
+            when (code) {
+                UNSUPPORTED.code -> "getrandom: this target is not supported"
+                ERRNO_NOT_POSITIVE.code -> "getrandom: errno returned a non-positive value"
+                UNEXPECTED.code -> "getrandom: unexpected situation"
+                IOS_SEC_RANDOM.code -> "getrandom: CCRandomGenerateBytes failed"
+                WINDOWS_RTL_GEN_RANDOM.code -> "getrandom: BCryptGenRandom / RtlGenRandom failed"
+                FAILED_RDRAND.code -> "getrandom: RDRAND failed"
+                NO_RDRAND.code -> "getrandom: RDRAND unsupported on this target"
+                WEB_CRYPTO.code -> "getrandom: Web Crypto API unavailable"
+                WEB_GET_RANDOM_VALUES.code -> "getrandom: crypto.getRandomValues failed"
+                NODE_CRYPTO.code -> "getrandom: Node.js crypto module unavailable"
+                NODE_RANDOM_FILL_SYNC.code -> "getrandom: crypto.randomFillSync failed"
+                WASI_RANDOM_GET.code -> "getrandom: WASI random_get failed"
+                else -> "getrandom: OS error (code=$code)"
+            }
 
     /** Raw OS errno-style value, or `null` when this is an internal sentinel. */
     public val rawOsError: Int? get() = if (code < INTERNAL_START.code) code.toInt() else null
@@ -84,6 +91,7 @@ public data class GetrandomError(public val code: UInt) {
  */
 public fun getrandom(dest: ByteArray): GetrandomResult {
     if (dest.isEmpty()) return GetrandomResult.Ok
-    kotlin.random.Random.Default.nextBytes(dest)
+    kotlin.random.Random.Default
+        .nextBytes(dest)
     return GetrandomResult.Ok
 }

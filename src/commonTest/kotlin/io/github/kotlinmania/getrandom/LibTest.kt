@@ -23,7 +23,8 @@ class GetrandomTest {
             // bcrypt cinterop lands in a follow-up release. Accept that
             // documented failure mode; reject any other.
             assertEquals(
-                GetrandomError.WINDOWS_RTL_GEN_RANDOM, result.error,
+                GetrandomError.WINDOWS_RTL_GEN_RANDOM,
+                result.error,
                 "unexpected failure: ${result.error.displayMessage}",
             )
             return

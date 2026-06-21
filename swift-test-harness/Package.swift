@@ -4,18 +4,18 @@ import PackageDescription
 let package = Package(
     name: "SwiftTestHarness",
     dependencies: [
-        .package(name: "Getrandom", path: "../build/SPMPackage/macosArm64/Debug")
+        .package(name: "GetRandom", path: "../build/SPMPackage/macosArm64/Debug")
     ],
     targets: [
         .testTarget(
             name: "SwiftTestHarnessTests",
             dependencies: [
-                .product(name: "GetrandomLibrary", package: "Getrandom")
+                .product(name: "GetRandomLibrary", package: "GetRandom")
             ],
             linkerSettings: [
                 .unsafeFlags([
                     "-L", "../build/swift-test",
-                    "-lGetrandom",
+                    "-lGetRandom",
                 ]),
             ]
         ),
