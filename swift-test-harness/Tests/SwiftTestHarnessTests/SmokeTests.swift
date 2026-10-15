@@ -1,21 +1,21 @@
 #if canImport(Testing)
 import Testing
-import GetRandom
+import Getrandom
 
-@Suite("GetRandom Swift Export Suite")
+@Suite("Getrandom Swift Export Suite")
 struct SmokeTests {
     @Test("Swift module loads cleanly")
     func swiftModuleLoads() {
-        #expect(Bool(true), "GetRandom swift module imported cleanly")
+        #expect(Bool(true), "Getrandom swift module imported cleanly")
     }
 }
 #elseif canImport(XCTest)
 import XCTest
-import GetRandom
+import Getrandom
 
 final class SmokeTests: XCTestCase {
     func testSwiftModuleLoads() {
-        XCTAssertTrue(true, "GetRandom swift module imported cleanly")
+        XCTAssertTrue(true, "Getrandom swift module imported cleanly")
     }
 }
 #endif
