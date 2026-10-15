@@ -40,7 +40,7 @@ public fun getrandom(dest: ByteArray): GetrandomResult = getrandomUninit(dest)
  */
 public fun getrandomUninit(dest: ByteArray): GetrandomResult {
     if (dest.isEmpty()) return GetrandomResult.Ok
-    kotlin.random.Random.Default.nextBytes(dest)
+    kotlin.random.Random.Default
+        .nextBytes(dest)
     return GetrandomResult.Ok
 }
-

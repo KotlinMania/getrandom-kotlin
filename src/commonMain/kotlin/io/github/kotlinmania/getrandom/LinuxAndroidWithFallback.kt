@@ -16,7 +16,12 @@ public object LinuxAndroidWithFallback {
      */
     public fun getrandomInner(dest: ByteArray): GetrandomResult {
         if (dest.isEmpty()) return GetrandomResult.Ok
-        kotlin.random.Random.Default.nextBytes(dest)
-        return GetrandomResult.Ok
+        return if (hasGetrandom.unsyncInit(::isGetrandomAvailable)) {
+            kotlin.random.Random.Default
+                .nextBytes(dest)
+            GetrandomResult.Ok
+        } else {
+            UseFile.getrandomInner(dest)
+        }
     }
 }
