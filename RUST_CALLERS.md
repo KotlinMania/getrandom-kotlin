@@ -16,7 +16,7 @@ For every Rust crate this repo owns (under `tmp/`), this file lists every **cros
 
 | package | module | inbound use sites | distinct caller crates | distinct caller repos | codex sites |
 |---|---|---:|---:|---:|---:|
-| `getrandom` | `iana_time_zone_haiku` | 0 | 0 | 0 | 0 |
+| `getrandom` | `getrandom` | 0 | 0 | 0 | 0 |
 
 ## `getrandom`
 
