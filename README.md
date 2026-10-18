@@ -41,7 +41,7 @@ entropy source:
 
 ```kotlin
 commonMain.dependencies {
-    implementation("io.github.kotlinmania:getrandom-kotlin:0.1.0")
+    implementation("io.github.kotlinmania:getrandom-kotlin:0.2.0")
 }
 ```
 
