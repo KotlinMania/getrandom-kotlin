@@ -73,5 +73,3 @@ public data class GetrandomError(
             }
     }
 }
-
-public typealias Error = GetrandomError
