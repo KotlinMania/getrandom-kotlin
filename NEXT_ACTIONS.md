@@ -5,25 +5,27 @@ Based on AST analysis, here are the concrete next steps.
 ## Summary
 
 - **Files Present:** 24/24 (100.0%)
-- **Function parity:** 32/55 matched (target 37) — 58.2%
-- **Class/type parity:** 3/8 matched (target 29) — 37.5%
-- **Combined symbol parity:** 35/63 matched (target 66) — 55.6%
-- **Average inline-code cosine:** 0.36 (function body across 24 matched files)
+- **Function parity:** 33/58 matched (target 37) — 56.9%
+- **Class/type parity:** 2/8 matched (target 28) — 25.0%
+- **Combined symbol parity:** 35/66 matched (target 65) — 53.0%
+- **Average inline-code cosine:** 0.06 (function body across 24 matched files)
 - **Average documentation cosine:** 0.42 (doc text across 24 matched files)
 - **Cheat-zeroed Files:** 0
-- **Critical Issues:** 20 files with <0.60 function similarity
+- **Critical Issues:** 24 files with <0.60 function similarity
+- **Needs Review:** 0 files with 0.60-0.84 function similarity
+- **Excellent:** 0 files with >=0.85 function similarity
 
 ## Priority 1: Fix Incomplete High-Dependency Files
 
 ### 1. error
-- **Similarity:** 0.20 (needs 65% improvement)
+- **Similarity:** 0.08 (needs 77% improvement)
 - **Dependencies:** 11
-- **Priority Score:** 11030808.0
-- **Functions:** 4/7 matched (target 5)
-- **Missing functions:** `raw_os_error`, `code`, `fmt`
-- **Types:** 1/1 matched (target 3)
-- **Missing types:** _none_
-- **Symbol Deficit:** 3 (functions: 3, types: 0)
+- **Priority Score:** 11050909.0
+- **Functions:** 4/8 matched (target 5)
+- **Missing functions:** `raw_os_error`, `code`, `fmt`, `fmt`
+- **Types:** 0/1 matched (target 2)
+- **Missing types:** `Error`
+- **Symbol Deficit:** 5 (functions: 4, types: 1)
 - **Action:** Deep review - likely missing major functionality
 
 ## Priority 2: Port Missing High-Value Files
@@ -39,21 +41,21 @@ Every matched file is listed below with function and type symbol parity.
 ### 1. error
 
 - **Target:** `getrandom.Error`
-- **Similarity:** 0.20
+- **Similarity:** 0.08
 - **Dependents:** 11
-- **Priority Score:** 11030808.0
-- **Functions:** 4/7 matched (target 5)
-- **Missing functions:** `raw_os_error`, `code`, `fmt`
-- **Types:** 1/1 matched (target 3)
-- **Missing types:** _none_
+- **Priority Score:** 11050909.0
+- **Functions:** 4/8 matched (target 5)
+- **Missing functions:** `raw_os_error`, `code`, `fmt`, `fmt`
+- **Types:** 0/1 matched (target 2)
+- **Missing types:** `Error`
 - **Tests:** 1/1 matched
 
 ### 2. use_file
 
 - **Target:** `getrandom.UseFile`
-- **Similarity:** 0.05
+- **Similarity:** 0.01
 - **Dependents:** 0
-- **Priority Score:** 91009.5
+- **Priority Score:** 91009.9
 - **Functions:** 1/8 matched (target 1)
 - **Missing functions:** `get_rng_fd`, `get_fd`, `wait_until_rng_ready`, `new`, `lock`, `unlock`, `drop`
 - **Types:** 0/2 matched (target 1)
@@ -62,9 +64,9 @@ Every matched file is listed below with function and type symbol parity.
 ### 3. util_libc
 
 - **Target:** `getrandom.UtilLibc`
-- **Similarity:** 0.11
+- **Similarity:** 0.01
 - **Dependents:** 0
-- **Priority Score:** 50708.9
+- **Priority Score:** 50709.9
 - **Functions:** 2/6 matched (target 2)
 - **Missing functions:** `new`, `ptr`, `open_readonly`, `getrandom_syscall`
 - **Types:** 0/1 matched
@@ -73,9 +75,9 @@ Every matched file is listed below with function and type symbol parity.
 ### 4. rdrand
 
 - **Target:** `getrandom.Rdrand`
-- **Similarity:** 0.09
+- **Similarity:** 0.01
 - **Dependents:** 0
-- **Priority Score:** 40509.1
+- **Priority Score:** 40509.9
 - **Functions:** 1/5 matched (target 1)
 - **Missing functions:** `rdrand`, `self_test`, `is_rdrand_good`, `rdrand_exact`
 - **Types:** 0/0 matched (target 1)
@@ -84,35 +86,35 @@ Every matched file is listed below with function and type symbol parity.
 ### 5. js
 
 - **Target:** `getrandom.Js`
-- **Similarity:** 0.13
+- **Similarity:** 0.01
 - **Dependents:** 0
-- **Priority Score:** 30408.7
+- **Priority Score:** 30409.9
 - **Functions:** 1/3 matched (target 1)
 - **Missing functions:** `getrandom_init`, `is_node`
 - **Types:** 0/1 matched
 - **Missing types:** `RngSource`
 
-### 6. netbsd
+### 6. lazy
+
+- **Target:** `getrandom.Lazy`
+- **Similarity:** 0.04
+- **Dependents:** 0
+- **Priority Score:** 20609.6
+- **Functions:** 2/4 matched (target 2)
+- **Missing functions:** `new`, `new`
+- **Types:** 2/2 matched
+- **Missing types:** _none_
+
+### 7. netbsd
 
 - **Target:** `getrandom.Netbsd`
-- **Similarity:** 0.23
+- **Similarity:** 0.02
 - **Dependents:** 0
-- **Priority Score:** 20307.7
+- **Priority Score:** 20309.8
 - **Functions:** 1/2 matched (target 1)
 - **Missing functions:** `kern_arnd`
 - **Types:** 0/1 matched
 - **Missing types:** `GetRandomFn`
-
-### 7. lazy
-
-- **Target:** `getrandom.Lazy`
-- **Similarity:** 0.23
-- **Dependents:** 0
-- **Priority Score:** 10407.7
-- **Functions:** 1/2 matched
-- **Missing functions:** `new`
-- **Types:** 2/2 matched
-- **Missing types:** _none_
 
 ### 8. error_impls
 
@@ -128,9 +130,9 @@ Every matched file is listed below with function and type symbol parity.
 ### 9. util
 
 - **Target:** `getrandom.Util`
-- **Similarity:** 0.19
+- **Similarity:** 0.02
 - **Dependents:** 0
-- **Priority Score:** 408.1
+- **Priority Score:** 409.8
 - **Functions:** 4/4 matched
 - **Missing functions:** _none_
 - **Types:** 0/0 matched (target 1)
@@ -139,9 +141,9 @@ Every matched file is listed below with function and type symbol parity.
 ### 10. linux_android_with_fallback
 
 - **Target:** `getrandom.LinuxAndroidWithFallback`
-- **Similarity:** 0.31
+- **Similarity:** 0.13
 - **Dependents:** 0
-- **Priority Score:** 206.9
+- **Priority Score:** 208.7
 - **Functions:** 2/2 matched
 - **Missing functions:** _none_
 - **Types:** 0/0 matched (target 1)
@@ -150,9 +152,9 @@ Every matched file is listed below with function and type symbol parity.
 ### 11. lib
 
 - **Target:** `getrandom.Lib`
-- **Similarity:** 0.72
+- **Similarity:** 0.21
 - **Dependents:** 0
-- **Priority Score:** 202.8
+- **Priority Score:** 207.9
 - **Functions:** 2/2 matched
 - **Missing functions:** _none_
 - **Types:** 0/0 matched (target 3)
@@ -161,9 +163,9 @@ Every matched file is listed below with function and type symbol parity.
 ### 12. windows
 
 - **Target:** `getrandom.Windows`
-- **Similarity:** 0.37
+- **Similarity:** 0.02
 - **Dependents:** 0
-- **Priority Score:** 106.3
+- **Priority Score:** 109.8
 - **Functions:** 1/1 matched
 - **Missing functions:** _none_
 - **Types:** 0/0 matched (target 1)
@@ -172,20 +174,20 @@ Every matched file is listed below with function and type symbol parity.
 ### 13. vxworks
 
 - **Target:** `getrandom.Vxworks`
-- **Similarity:** 0.38
+- **Similarity:** 0.03
 - **Dependents:** 0
-- **Priority Score:** 106.2
+- **Priority Score:** 109.7
 - **Functions:** 1/1 matched
 - **Missing functions:** _none_
 - **Types:** 0/0 matched (target 1)
 - **Missing types:** _none_
 
-### 14. getrandom
+### 14. wasi
 
-- **Target:** `getrandom.GetrandomMod`
-- **Similarity:** 0.39
+- **Target:** `getrandom.Wasi`
+- **Similarity:** 0.04
 - **Dependents:** 0
-- **Priority Score:** 106.1
+- **Priority Score:** 109.6
 - **Functions:** 1/1 matched
 - **Missing functions:** _none_
 - **Types:** 0/0 matched (target 1)
@@ -194,42 +196,42 @@ Every matched file is listed below with function and type symbol parity.
 ### 15. solaris
 
 - **Target:** `getrandom.Solaris`
-- **Similarity:** 0.41
+- **Similarity:** 0.05
 - **Dependents:** 0
-- **Priority Score:** 105.9
+- **Priority Score:** 109.5
 - **Functions:** 1/1 matched
 - **Missing functions:** _none_
 - **Types:** 0/0 matched (target 1)
 - **Missing types:** _none_
 
-### 16. linux_android
+### 16. hermit
 
-- **Target:** `getrandom.LinuxAndroid`
-- **Similarity:** 0.43
+- **Target:** `getrandom.Hermit`
+- **Similarity:** 0.06
 - **Dependents:** 0
-- **Priority Score:** 105.7
+- **Priority Score:** 109.4
 - **Functions:** 1/1 matched
 - **Missing functions:** _none_
 - **Types:** 0/0 matched (target 1)
 - **Missing types:** _none_
 
-### 17. getentropy
+### 17. custom
 
-- **Target:** `getrandom.Getentropy`
-- **Similarity:** 0.45
+- **Target:** `getrandom.Custom`
+- **Similarity:** 0.07
 - **Dependents:** 0
-- **Priority Score:** 105.5
-- **Functions:** 1/1 matched
+- **Priority Score:** 109.3
+- **Functions:** 1/1 matched (target 2)
 - **Missing functions:** _none_
 - **Types:** 0/0 matched (target 1)
 - **Missing types:** _none_
 
-### 18. wasi
+### 18. getrandom
 
-- **Target:** `getrandom.Wasi`
-- **Similarity:** 0.47
+- **Target:** `getrandom.GetrandomMod`
+- **Similarity:** 0.07
 - **Dependents:** 0
-- **Priority Score:** 105.3
+- **Priority Score:** 109.3
 - **Functions:** 1/1 matched
 - **Missing functions:** _none_
 - **Types:** 0/0 matched (target 1)
@@ -238,43 +240,43 @@ Every matched file is listed below with function and type symbol parity.
 ### 19. solid
 
 - **Target:** `getrandom.Solid`
-- **Similarity:** 0.53
+- **Similarity:** 0.07
 - **Dependents:** 0
-- **Priority Score:** 104.7
+- **Priority Score:** 109.3
 - **Functions:** 1/1 matched
 - **Missing functions:** _none_
 - **Types:** 0/0 matched (target 1)
 - **Missing types:** _none_
 
-### 20. hermit
+### 20. linux_android
 
-- **Target:** `getrandom.Hermit`
-- **Similarity:** 0.56
+- **Target:** `getrandom.LinuxAndroid`
+- **Similarity:** 0.07
 - **Dependents:** 0
-- **Priority Score:** 104.4
+- **Priority Score:** 109.3
 - **Functions:** 1/1 matched
 - **Missing functions:** _none_
 - **Types:** 0/0 matched (target 1)
 - **Missing types:** _none_
 
-### 21. apple-other
+### 21. getentropy
+
+- **Target:** `getrandom.Getentropy`
+- **Similarity:** 0.07
+- **Dependents:** 0
+- **Priority Score:** 109.3
+- **Functions:** 1/1 matched
+- **Missing functions:** _none_
+- **Types:** 0/0 matched (target 1)
+- **Missing types:** _none_
+
+### 22. apple-other
 
 - **Target:** `getrandom.AppleOther`
-- **Similarity:** 0.57
+- **Similarity:** 0.08
 - **Dependents:** 0
-- **Priority Score:** 104.3
+- **Priority Score:** 109.2
 - **Functions:** 1/1 matched
-- **Missing functions:** _none_
-- **Types:** 0/0 matched (target 1)
-- **Missing types:** _none_
-
-### 22. custom
-
-- **Target:** `getrandom.Custom`
-- **Similarity:** 0.61
-- **Dependents:** 0
-- **Priority Score:** 103.9
-- **Functions:** 1/1 matched (target 2)
 - **Missing functions:** _none_
 - **Types:** 0/0 matched (target 1)
 - **Missing types:** _none_
@@ -282,9 +284,9 @@ Every matched file is listed below with function and type symbol parity.
 ### 23. espidf
 
 - **Target:** `getrandom.Espidf`
-- **Similarity:** 0.63
+- **Similarity:** 0.15
 - **Dependents:** 0
-- **Priority Score:** 103.7
+- **Priority Score:** 108.5
 - **Functions:** 1/1 matched
 - **Missing functions:** _none_
 - **Types:** 0/0 matched (target 1)
@@ -293,9 +295,9 @@ Every matched file is listed below with function and type symbol parity.
 ### 24. fuchsia
 
 - **Target:** `getrandom.Fuchsia`
-- **Similarity:** 0.63
+- **Similarity:** 0.15
 - **Dependents:** 0
-- **Priority Score:** 103.7
+- **Priority Score:** 108.5
 - **Functions:** 1/1 matched
 - **Missing functions:** _none_
 - **Types:** 0/0 matched (target 1)
