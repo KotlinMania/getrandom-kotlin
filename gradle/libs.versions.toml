@@ -11,6 +11,8 @@ ktlintEngine = "1.8.0"
 kotlinxBenchmark = "0.5.0"
 libc-kotlin = "0.1.11"
 
+androidxTestRunner = "1.7.0"
+
 [plugins]
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "androidKmp" }
@@ -29,6 +31,8 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime" }
 collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "collectionsImmutable" }
 libc-kotlin = { module = "io.github.kotlinmania:libc-kotlin", version.ref = "libc-kotlin" }
+
+androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidxTestRunner" }
 
 [bundles]
 getrandom-commonMain = [
